@@ -51,7 +51,7 @@ class SomeService {
    }
    public int getX(Long id) {
       MutableContainer container = repo.findById(id).get();
-      return container.getA().getX();
+      return container.getA().x();
    }
 }
 

@@ -1,23 +1,21 @@
 package victor.training.immutable;
 
-import lombok.NonNull;
-import lombok.Value;
-import lombok.With;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@Value
-public class A {
-   @With
-   int x;
-   @NonNull
-   List<Integer> list;
-   @NonNull
-   B b;
+public record A(int x, List<Integer> list, B b) {
+   public A {
+      Objects.requireNonNull(list);
+      Objects.requireNonNull(b);
+   }
 
-   public List<Integer> getList() {
+
+   public List<Integer> list() {
       return Collections.unmodifiableList(list);
+   }
+
+   public A withX(int newX) {
+      return new A(newX, list, b);
    }
 }
