@@ -1,21 +1,21 @@
 package victor.training.immutable;
 
-import java.util.Collections;
+import com.google.common.collect.ImmutableList;
+import org.immutables.value.Value.Immutable;
+import org.immutables.value.Value.Parameter;
+
 import java.util.List;
-import java.util.Objects;
 
-public record A(int x, List<Integer> list, B b) {
-   public A {
-      Objects.requireNonNull(list);
-      Objects.requireNonNull(b);
-   }
+@Immutable
+public abstract class A {
+   @Parameter
+   public abstract int x();
+   @Parameter
+   public abstract ImmutableList list();
+   @Parameter
+   public abstract ImmutableB b();
 
-
-   public List<Integer> list() {
-      return Collections.unmodifiableList(list);
-   }
-
-   public A withX(int newX) {
-      return new A(newX, list, b);
+   public int logic() {
+      return list().size() + x();
    }
 }
