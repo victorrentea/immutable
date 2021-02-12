@@ -1,22 +1,13 @@
 package victor.training.immutable;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@Embeddable
 public class A {
-   private int x;
-   @ElementCollection
-   private List<Integer> list;
-   @Embedded
-   private B b; // line 1
-
-   protected A() {
-   } // For Hibernate only
+   private final int x;
+   private final List<Integer> list;
+   private final B b; // line 1
 
    public A(int x, List<Integer> list, B b) {
       this.x = x;
