@@ -1,38 +1,39 @@
 package victor.training.immutable;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
-public class ImmutableAdvanced {
+public class ImmutablePlay {
    public static void main(String[] args) {
       List<Integer> numbers = Stream.of(1, 2, 3).collect(toList());
 
-      Immutable immutable = new Immutable(1, numbers, new Other(15));
+      A a = new A(1, numbers, new B(15));
 
-      System.out.println(immutable);
+      System.out.println(a);
 
    }
 }
 
-class Immutable {
+class A {
    private final int x;
    private final List<Integer> numbers;
-   private final Other other;
+   private final B other;
 
-   Immutable(int x, List<Integer> numbers, Other other) {
+   public A(int x, List<Integer> numbers, B other) {
       this.x = x;
       this.numbers = numbers;
       this.other = other;
    }
-   public List<Integer> getNumbers() {
-      return numbers;
-   }
    public int getX() {
       return x;
    }
-   public Other getOther() {
+   public List<Integer> getNumbers() {
+      return numbers;
+   }
+   public B getOther() {
       return other;
    }
 
@@ -42,18 +43,18 @@ class Immutable {
    }
 }
 
-class Other {
-   private int a;
+class B {
+   private int y;
 
-   public Other(int a) {
-      this.a = a;
+   public B(int y) {
+      this.y = y;
    }
 
-   public int getA() {
-      return a;
+   public int getY() {
+      return y;
    }
 
-   public void setA(int a) {
-      this.a = a;
+   public void setY(int y) {
+      this.y = y;
    }
 }
